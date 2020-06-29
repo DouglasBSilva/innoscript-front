@@ -6,8 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export default class ProductLib{ 
     
-    public getValue({value}){
-        return value[this.currency].toFixed(2);
+    
+
+    public getValue({values}){
+        return  values.find(value => value['type'] == this.currency)['price'].toFixed(2);
     }
 
     get currency(){
