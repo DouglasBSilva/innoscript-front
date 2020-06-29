@@ -1,0 +1,75 @@
+<div class="container">
+    <app-title [title]="'Cart'" [subTitle]="'Confirm your order'"></app-title>
+    <div class="row justify-content-center p-2 pt-lg-3">
+        <div class="col-11 shadow p-lg-5 pl-2 pr-2 pt-5 pb-5 rounded">
+            <div class="row justify-content-center" >
+                <div class="col-10 border-bottom pb-3">
+                    
+                    <ng-container *ngIf="cart.length">
+                        <div class="row justify-content-start border-bottom pb-3 font-weight-bold mb-3">
+                            <div class="col-5">
+                                Product
+                            </div>
+                            <div class="col-4 col-lg-3 text-center">
+                                Quantity
+                            </div>
+                            <div class="col-3 text-center">
+                                Price
+                            </div>
+                        </div>
+                        <div *ngFor="let order of cart" class="row justify-content-around border-bottom pb-3 mb-3 rounded">
+                            <div class="col-2 d-none d-lg-flex">
+                                
+                                <img src="{{order.product.image}}"/>
+                            
+                            </div>
+                            <div class="col-5 col-lg-3 pt-lg-2 pt-4 font-weight-bold text-primary">
+                                <p class="mt-2 mt-lg-0">
+                                    {{order.product.name}}  
+                                    <span class="d-lg-none text-info material-icons" placement="right" ngbTooltip={{order.product.description}}  triggers="click:blur"> info </span>  
+                                </p>
+                                <p class="d-none d-lg-flex">
+                                    {{order.product.description}}
+                                </p>
+                            </div>
+                            <div class="col-4 col-lg-3 pt-3">
+                                <app-increment-input (valueChange)="updateCart($event, order.product)" [value]="order.quantity"></app-increment-input>
+                            </div>
+                            <div class="col-3 pt-4 text-center">
+                                <p class="mt-2">
+                                    {{this.productLib.currency}}: {{(this.productLib.getValue(order.product) * order.quantity).toFixed(2).replace('.',',')}}
+                                </p>
+                            </div>
+                            <div class="col-12 col-lg-1 pt-4">
+                                <button class="btn btn-sm btn-outline-danger btn-block font-weight-bold" (click)="clearProduct(order.product)">X</button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="row">
+                        <div class="col">
+                            <span class="font-weight-bold">TOTAL</span>
+                        </div>
+        
+                        <div class="col text-right">
+                            <span class="font-weight-bold"> {{this.productLib.currency}}: {{cartService.getTotal()}}</span>
+                        </div>
+                    </div>
+                    <div class="row border-top mt-3 pt-3 justify-content-around">
+                        <div class="col-lg-8 col-12">
+                           <button class="btn btn-success btn-block btn-lg" (click)="gotToCheckout()">Checkout</button>
+                        </div>
+        
+                        <div class="col-12 col-lg text-right pt-2 pt-lg-3 d-flex justify-content-end">
+                            <button class="d-block d-lg-none btn-block btn btn-danger btn-sm " [routerLink]="['']"><small>Keep shopping</small>  </button>
+                            <button class="d-none d-lg-block btn btn-danger btn-sm" [routerLink]="['']"><small>Keep shopping</small>  </button>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+            
+           
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container-fluid p-0" >
+  <div class="row" (click)="open()">
+    <div class="col">
+      <div class="row position-absolute w-100 h-100 hidden-content">
+        <div class="col d-lg-flex outer justify-content-center">
+          <div class="row middle">
+            <div class="col inner pt-5 text-center">
+              <p class="h2">{{product.name}}</p>
+              <p class="h2"> {{productLib.currency}}: {{ productLib.getValue(product)}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img class="img-fluid" src='{{product.image}}' />
+    </div>
+  </div>
+  <div class="row mt-2 d-none d-lg-flex">
+    <div class="col">
+      <button class="btn btn-block btn-success"  (click)="open()">Order now</button>
+    </div>
+  </div>
+  <div class="row d-flex d-lg-none">
+    <div class="col-12 text-center font-weight-bold text-primary">
+      <span>{{product.name}} - {{productLib.currency}}: {{ productLib.getValue(product)}}</span>
+    </div>
+  </div>
+</div>

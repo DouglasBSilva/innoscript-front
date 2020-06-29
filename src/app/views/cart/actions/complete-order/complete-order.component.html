@@ -1,0 +1,123 @@
+<div class="modal-header">
+  <h2 class="modal-title">Complete your informations</h2>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-row">
+      <div class="col-lg col-12">
+        <mat-form-field>
+          <mat-label>First name</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <div class="col-lg col-12">
+        <mat-form-field>
+          <mat-label>Surname</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <textarea matInput placeholder="Ex. 100 Main St"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-12 col-lg">
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input matInput placeholder="Ex. San Francisco" />
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-lg">
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <input matInput placeholder="Ex. California" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-12">
+        <mat-form-field>
+          <mat-label>Postal Code</mat-label>
+          <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" />
+          <mat-hint>{{ postalCode.value.length }} / 5</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <div class="row justify-content-end">
+      <div class="col-lg-3 col-5">
+        <select class="form-control form-control-sm" [(ngModel)]="productLib.currency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+        </select>
+    </div>
+  </div>
+  <div class="row">
+    
+    <div class="col">
+        <span class="font-weight-bold">Order</span>
+    </div>
+
+    <div class="col text-right">
+        <span class="font-weight-bold"> {{productLib.currency}}: {{cartService.getTotal()}}</span>
+    </div>
+</div>
+<div class="row">
+   
+    <div class="col">
+        <span class="font-weight-bold">Delivery</span>
+    </div>
+
+    <div class="col text-right">
+        <span class="font-weight-bold"> {{productLib.currency}}: 5,00</span>
+    </div>
+</div>
+<div class="row">
+     
+    <div class="col">
+        <span class="font-weight-bold">TOTAL</span>
+    </div>
+
+    <div class="col text-right">
+        <span class="font-weight-bold"> {{productLib.currency}}: {{(cartService.getTotalFloat() + 5).toFixed(2)}}</span>
+    </div>
+</div>
+</div>
+<div class="modal-footer">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12 mb-lg-0  col-lg-8">
+                <button
+                type="button"
+                ngbAutofocus
+                class="btn btn-success btn-lg btn-block"
+                (click)="activeModal.close('Close click')"
+                >
+                Proceed
+            </button>
+        </div>
+        <div class="col-12 mb-2 mb-lg-0  col-lg pt-2 pt-lg-3 ">
+            <button type="button" class="btn btn-block btn-danger btn-sm">
+                <small>Cancel</small>
+            </button>
+        </div>
+    </div>
+</div>
+  
+</div>

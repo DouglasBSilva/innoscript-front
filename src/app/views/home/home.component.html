@@ -1,0 +1,12 @@
+<div class="container">
+  <app-title [title]="'Menu'" [subTitle]="'Know our pizzas:'"></app-title>
+  <div class="row justify-content-center pt-lg-3 pb-lg-5 p-1">
+    <div class="col-11 shadow pb-lg-5">
+      <div *ngIf="products" class="row justify-content-lg-center justify-content-start">
+        <div *ngFor="let product of products" class="col-6 pr-2 pl-2 pl-lg-4 pr-lg-4 col-lg-4 mt-3 mg-lg-5">
+            <app-productschoose [product]="product"></app-productschoose>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
