@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClearProductComponent } from './actions/clear-product/clear-product.component';
 import ProductLib from 'src/app/lib/product.lib';
 import { CompleteOrderComponent } from './actions/complete-order/complete-order.component';
+import { OrdersuccessComponent } from 'src/app/components/ordersuccess/ordersuccess.component';
 
 @Component({
   selector: 'app-cart',
@@ -28,8 +29,11 @@ export class CartComponent implements OnInit {
   
   public gotToCheckout(){
     const modalRef = this.modalService.open(CompleteOrderComponent);
-  
+    modalRef.componentInstance.refresh = this.refreshList;
+
   }
+
+ 
 
   public clearProduct(product: Product){
     const modalRef = this.modalService.open(ClearProductComponent);

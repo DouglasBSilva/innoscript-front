@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   private getProducts(){
     this.productsService.index().subscribe(
       result => {
-        console.log(result);
        this.products = result;
     });
   }

@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <button  class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-success text-center">Your Order was registered successfully,<br> Thank you !</h2>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" ngbAutofocus class="btn btn-secondary btn-block" (click)="activeModal.close('Close click')">Ok</button>
+  </div>
+  

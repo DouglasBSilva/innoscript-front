@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { Order } from '../models/order';
 import ProductLib from '../lib/product.lib';
+import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  constructor(private productLib: ProductLib) {
+  private baseUrl = '/carts';
+  constructor(private productLib: ProductLib, private baseService: BaseService) {
     if(!window.localStorage['cart']){
       window.localStorage.setItem('cart', JSON.stringify([]));
     }
@@ -21,6 +23,11 @@ export class CartService {
     window.localStorage.setItem('cart', JSON.stringify(cart));
   }
   
+  public store({id}){
+    this.baseService.url = this.baseUrl;
+    return this.baseService.create({customerId: id, cart: this.cart});
+  }
+
   public getTotal(){
     return this.cart.reduce((accumulator, current) => accumulator + (current.quantity * this.productLib.getValue(current.product)),0).toFixed(2).replace('.',',');
   }
@@ -70,7 +77,9 @@ export class CartService {
       if (found.quantity <= 0) this.clearProduct(product);
     }
   }
-
+  public clearAll(){
+    this.cart = [];
+  }
   public clearProduct(product: Product){
     this.cart = this.cart.filter(order => product.id != order.productId);
   }

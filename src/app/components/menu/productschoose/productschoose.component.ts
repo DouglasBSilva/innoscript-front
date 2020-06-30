@@ -24,7 +24,6 @@ export class ProductschooseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.product);
   }
 
 }

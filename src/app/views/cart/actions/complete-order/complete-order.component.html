@@ -10,18 +10,34 @@
   </button>
 </div>
 <div class="modal-body">
-  <form>
+  <form #customerform name="customerform">
+    <div class="form-row">
+      <div class=" col-12">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput name="email" [(ngModel)]="customer.email" [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                 placeholder="Ex. pat@example.com">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    
     <div class="form-row">
       <div class="col-lg col-12">
         <mat-form-field>
           <mat-label>First name</mat-label>
-          <input matInput />
+          <input matInput name="name" [(ngModel)]="customer.name"/>
         </mat-form-field>
       </div>
       <div class="col-lg col-12">
         <mat-form-field>
           <mat-label>Surname</mat-label>
-          <input matInput />
+          <input matInput name="surname" [(ngModel)]="customer.surname" />
         </mat-form-field>
       </div>
     </div>
@@ -29,22 +45,7 @@
       <div class="col">
         <mat-form-field>
           <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Ex. 100 Main St"></textarea>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col-12 col-lg">
-        <mat-form-field>
-          <mat-label>City</mat-label>
-          <input matInput placeholder="Ex. San Francisco" />
-        </mat-form-field>
-      </div>
-      <div class="col-12 col-lg">
-        <mat-form-field>
-          <mat-label>State</mat-label>
-          <input matInput placeholder="Ex. California" />
+          <textarea name="address" [(ngModel)]="customer.address" matInput placeholder="Ex. 100 Main St"></textarea>
         </mat-form-field>
       </div>
     </div>
@@ -52,7 +53,7 @@
       <div class="col-12">
         <mat-form-field>
           <mat-label>Postal Code</mat-label>
-          <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" />
+          <input matInput name="postalcode" #postalCode maxlength="5" [(ngModel)]="customer.postalcode" placeholder="Ex. 94105" />
           <mat-hint>{{ postalCode.value.length }} / 5</mat-hint>
         </mat-form-field>
       </div>
@@ -107,7 +108,7 @@
                 type="button"
                 ngbAutofocus
                 class="btn btn-success btn-lg btn-block"
-                (click)="activeModal.close('Close click')"
+                (click)="submitForm(customerform)"
                 >
                 Proceed
             </button>

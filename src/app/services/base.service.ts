@@ -20,12 +20,9 @@ export class BaseService {
     return this.http.get(this._url);
   }
 
-  public update(): Observable<any>{
-    return this.http.get(this._url);
-  }
-
-  public create(): Observable<any>{
-    return this.http.get(this._url);
+  
+  public create(entity): Observable<any>{
+    return this.http.post(this._url, entity);
   }
 
   public delete(): Observable<any>{

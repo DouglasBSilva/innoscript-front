@@ -32,6 +32,7 @@ import { ClearProductComponent } from './views/cart/actions/clear-product/clear-
 import { CompleteOrderComponent } from './views/cart/actions/complete-order/complete-order.component';
 import ProductLib from './lib/product.lib';
 import { TitleComponent } from './components/title/title.component';
+import { OrdersuccessComponent } from './components/ordersuccess/ordersuccess.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { TitleComponent } from './components/title/title.component';
     ClearProductComponent,
     CompleteOrderComponent,
     TitleComponent,
+    OrdersuccessComponent,
     
   ],
   imports: [

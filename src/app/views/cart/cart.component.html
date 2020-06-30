@@ -4,7 +4,12 @@
         <div class="col-11 shadow p-lg-5 pl-2 pr-2 pt-5 pb-5 rounded">
             <div class="row justify-content-center" >
                 <div class="col-10 border-bottom pb-3">
-                    
+                    <div class="row justify-content-center" *ngIf="cart.length < 1">
+                        <div class="col-8 text-center">
+                            <h1>Your cart is empty!</h1>
+                            <button class="btn-block btn btn-primary btn-lg" [routerLink]="['']"> Go back to Menu</button>
+                        </div>
+                    </div>
                     <ng-container *ngIf="cart.length">
                         <div class="row justify-content-start border-bottom pb-3 font-weight-bold mb-3">
                             <div class="col-5">
@@ -45,7 +50,7 @@
                             </div>
                         </div>
                     </ng-container>
-                    <div class="row">
+                    <div class="row"  *ngIf="cart.length">
                         <div class="col">
                             <span class="font-weight-bold">TOTAL</span>
                         </div>
@@ -54,7 +59,7 @@
                             <span class="font-weight-bold"> {{this.productLib.currency}}: {{cartService.getTotal()}}</span>
                         </div>
                     </div>
-                    <div class="row border-top mt-3 pt-3 justify-content-around">
+                    <div class="row border-top mt-3 pt-3 justify-content-around" *ngIf="cart.length">
                         <div class="col-lg-8 col-12">
                            <button class="btn btn-success btn-block btn-lg" (click)="gotToCheckout()">Checkout</button>
                         </div>
